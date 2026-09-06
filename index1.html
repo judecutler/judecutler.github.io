@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Name — Developer</title>
+<meta name="description" content="Personal portfolio of Your Name: about, timeline, projects, and contact.">
+
+<meta name="theme-color" content="#001d44">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <nav class="nav">
+    <a href="#top" class="nav__mark">yourname<span class="nav__mark-dot">.</span></a>
+
+    <button class="nav__toggle" id="navToggle" aria-expanded="false" aria-controls="navMenu" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+
+    <ul class="nav__menu" id="navMenu">
+      <li><a href="#about">About</a></li>
+      <li><a href="#timeline">Timeline</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="main">
+
+  <!-- HERO -->
+  <!-- EDIT: swap the headline + tagline for your own. -->
+  <!-- The canvas below is reserved for the Conway's Game of Life
+       background we'll add later — it's inert for now. -->
+  <section id="top" class="hero">
+    <canvas id="life-canvas" class="hero__canvas" aria-hidden="true"></canvas>
+    <div class="hero__content">
+      <h1 class="hero__title">Hi, I'm Your Name.</h1>
+      <p class="hero__tagline">I design and build things for the web — replace this line with your own.</p>
+    </div>
+    <div class="hero__scroll-cue" aria-hidden="true"><span></span></div>
+  </section>
+
+  <!-- ABOUT -->
+  <!-- EDIT: replace the portrait placeholder with an <img> tag once you have a photo,
+       and rewrite the bio paragraphs. -->
+  <section id="about" class="about">
+    <div class="section-inner">
+      <h2 class="section-title">About</h2>
+      <div class="about__grid">
+        <div class="about__portrait" aria-hidden="true">
+          <span>Add your photo<br>(roughly 4:5, e.g. 480&times;600px)</span>
+        </div>
+        <div class="about__text">
+          <p>Write a couple of paragraphs about who you are, what you do, and what you care about. Keep it conversational — this is the part people read to decide whether to reach out.</p>
+          <p>A second paragraph works well for a hobby, a value, or something unexpected about you.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIMELINE -->
+  <!-- EDIT: replace with your own milestones, in whatever order feels honest.
+       Add or remove <li class="timeline__entry"> blocks as needed. -->
+  <section id="timeline" class="timeline">
+    <div class="section-inner">
+      <h2 class="section-title">Timeline</h2>
+      <ol class="timeline__log">
+        <li class="timeline__entry">
+          <span class="timeline__date">2015</span>
+          <span class="timeline__desc">Replace with a milestone — e.g. wrote your first line of code.</span>
+        </li>
+        <li class="timeline__entry">
+          <span class="timeline__date">2019</span>
+          <span class="timeline__desc">Replace with another milestone.</span>
+        </li>
+        <li class="timeline__entry">
+          <span class="timeline__date">2023</span>
+          <span class="timeline__desc">Replace with another milestone.</span>
+        </li>
+        <li class="timeline__entry">
+          <span class="timeline__date">Now</span>
+          <span class="timeline__desc">Replace with what you're doing today.</span>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <!-- EDIT: duplicate/remove <article class="project-card"> blocks as needed,
+       swap placeholder media for real <img> tags, and rewrite copy + tags. -->
+  <section id="work" class="work">
+    <div class="section-inner">
+      <h2 class="section-title">Work</h2>
+      <div class="work__grid">
+
+        <article class="project-card">
+          <div class="project-card__media" aria-hidden="true"><span>Project photo</span></div>
+          <h3 class="project-card__title">Project name</h3>
+          <p class="project-card__desc">One or two sentences on what it is and what you did.</p>
+          <ul class="project-card__tags"><li>Tag</li><li>Tag</li></ul>
+        </article>
+
+        <article class="project-card">
+          <div class="project-card__media" aria-hidden="true"><span>Project photo</span></div>
+          <h3 class="project-card__title">Project name</h3>
+          <p class="project-card__desc">One or two sentences on what it is and what you did.</p>
+          <ul class="project-card__tags"><li>Tag</li><li>Tag</li></ul>
+        </article>
+
+        <article class="project-card">
+          <div class="project-card__media" aria-hidden="true"><span>Project photo</span></div>
+          <h3 class="project-card__title">Project name</h3>
+          <p class="project-card__desc">One or two sentences on what it is and what you did.</p>
+          <ul class="project-card__tags"><li>Tag</li><li>Tag</li></ul>
+        </article>
+
+        <article class="project-card">
+          <div class="project-card__media" aria-hidden="true"><span>Project photo</span></div>
+          <h3 class="project-card__title">Project name</h3>
+          <p class="project-card__desc">One or two sentences on what it is and what you did.</p>
+          <ul class="project-card__tags"><li>Tag</li><li>Tag</li></ul>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <!-- EDIT: swap the email and social links for your own. -->
+  <section id="contact" class="contact">
+    <div class="section-inner">
+      <h2 class="section-title">Contact</h2>
+      <p class="contact__text">Say hello — replace this line and update the email below.</p>
+      <a class="contact__email" href="mailto:[email protected]">[email protected]</a>
+      <ul class="contact__social">
+        <li><a href="#">GitHub</a></li>
+        <li><a href="#">LinkedIn</a></li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <p>&copy; <span id="year"></span> Your Name. Built with HTML, CSS &amp; JS.</p>
+</footer>
+
+<script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,381 @@
+/* ==========================================================================
+   Design tokens — retro / vintage space-poster palette
+   ========================================================================== */
+:root {
+  /* Color */
+  --cream: #FFF9EB;         /* page background */
+  --panel: #FFF1D2;         /* card / panel background, a shade deeper */
+  --navy: #001D44;          /* primary text, hero + footer background */
+  --navy-soft: #3C5578;     /* muted navy for secondary text on cream */
+  --mint: #80FFAB;          /* accent — fills, borders, badges */
+  --mint-line: rgba(128, 255, 171, 0.35); /* subtle mint on navy */
+  --cream-soft: rgba(255, 249, 235, 0.72); /* muted cream text on navy */
+  --line: rgba(0, 29, 68, 0.18); /* hairline on cream */
+
+  /* Type */
+  --font-display: "Space Grotesk", ui-sans-serif, sans-serif;
+  --font-mono: "Space Mono", ui-monospace, Menlo, Consolas, monospace;
+
+  /* Layout */
+  --content-width: 860px;
+  --gutter: clamp(1.25rem, 4vw, 3rem);
+  --border: 2px solid var(--navy);
+  --shadow: 5px 5px 0 var(--navy);
+}
+
+/* ==========================================================================
+   Reset
+   ========================================================================== */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--cream);
+  color: var(--navy);
+  font-family: var(--font-mono);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3 { margin: 0; font-family: var(--font-display); font-weight: 700; }
+p { margin: 0 0 1em; max-width: 62ch; }
+a { color: inherit; }
+ul, ol { margin: 0; padding: 0; list-style: none; }
+img { max-width: 100%; display: block; }
+button { font: inherit; color: inherit; background: none; border: none; cursor: pointer; }
+
+::selection { background: var(--mint); color: var(--navy); }
+
+:focus-visible {
+  outline: 2px solid var(--navy);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+}
+
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: auto;
+  background: var(--mint);
+  color: var(--navy);
+  padding: 0.75em 1.25em;
+  z-index: 100;
+  font-family: var(--font-mono);
+  font-weight: 700;
+}
+.skip-link:focus {
+  left: var(--gutter);
+  top: var(--gutter);
+}
+
+/* ==========================================================================
+   Shared layout helpers
+   ========================================================================== */
+.section-inner {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: clamp(4rem, 10vw, 7rem) var(--gutter);
+}
+.section-title {
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  margin-bottom: clamp(2rem, 5vw, 3rem);
+}
+
+/* ==========================================================================
+   Header / nav — navy masthead, pinned throughout
+   ========================================================================== */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  background: var(--navy);
+  border-bottom: var(--border);
+}
+.nav {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1.1rem var(--gutter);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.nav__mark {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-decoration: none;
+  color: var(--cream);
+}
+.nav__mark-dot { color: var(--mint); }
+
+.nav__menu {
+  display: flex;
+  gap: clamp(1rem, 3vw, 2rem);
+}
+.nav__menu a {
+  text-decoration: none;
+  font-size: 0.9rem;
+  color: var(--cream-soft);
+  transition: color 0.15s ease;
+}
+.nav__menu a:hover,
+.nav__menu a:focus-visible,
+.nav__menu a.is-active {
+  color: var(--mint);
+}
+
+.nav__toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  padding: 0.5rem;
+}
+.nav__toggle span {
+  width: 22px;
+  height: 2px;
+  background: var(--cream);
+  display: block;
+}
+
+@media (max-width: 640px) {
+  .nav__toggle { display: flex; }
+  .nav__menu {
+    position: fixed;
+    inset: 0 0 auto 0;
+    flex-direction: column;
+    background: var(--navy);
+    padding: 5.5rem var(--gutter) 2rem;
+    gap: 1.5rem;
+    transform: translateY(-100%);
+    transition: transform 0.25s ease;
+    border-bottom: var(--border);
+  }
+  .nav__menu.is-open { transform: translateY(0); }
+  .nav__menu a { font-size: 1.1rem; }
+}
+
+/* ==========================================================================
+   Hero — the "front cover": navy panel with a faint halftone texture
+   ========================================================================== */
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background:
+    radial-gradient(var(--mint-line) 1.5px, transparent 1.5px) 0 0 / 16px 16px,
+    var(--navy);
+}
+.hero__canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  /* Reserved for the Conway's Game of Life background — inert until
+     js/game-of-life.js (added later) draws to it. */
+}
+.hero__content {
+  position: relative;
+  z-index: 1;
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+.hero__title {
+  color: var(--cream);
+  font-size: clamp(2.5rem, 7vw, 4.5rem);
+  line-height: 1.1;
+  max-width: 14ch;
+}
+.hero__tagline {
+  margin-top: 1.5rem;
+  color: var(--cream-soft);
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  max-width: 42ch;
+}
+.hero__scroll-cue {
+  position: absolute;
+  bottom: clamp(1.5rem, 4vw, 3rem);
+  left: var(--gutter);
+  z-index: 1;
+  width: 1px;
+  height: 48px;
+  background: var(--mint-line);
+}
+.hero__scroll-cue span {
+  position: absolute;
+  top: 0;
+  left: -2.5px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--mint);
+}
+
+/* ==========================================================================
+   About
+   ========================================================================== */
+.about__grid {
+  display: grid;
+  grid-template-columns: minmax(180px, 240px) 1fr;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: start;
+}
+.about__portrait {
+  aspect-ratio: 4 / 5;
+  background: var(--panel);
+  border: var(--border);
+  box-shadow: var(--shadow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 1rem;
+  color: var(--navy-soft);
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+.about__text p { color: var(--navy-soft); }
+
+@media (max-width: 640px) {
+  .about__grid { grid-template-columns: 1fr; }
+  .about__portrait { max-width: 220px; }
+}
+
+/* ==========================================================================
+   Timeline ("commit log")
+   ========================================================================== */
+.timeline__log {
+  position: relative;
+  padding-left: clamp(1.5rem, 4vw, 2.5rem);
+  border-left: var(--border);
+}
+.timeline__entry {
+  position: relative;
+  padding-bottom: clamp(1.75rem, 4vw, 2.5rem);
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+.timeline__entry:last-child { padding-bottom: 0; }
+.timeline__entry::before {
+  content: "";
+  position: absolute;
+  left: calc(-1 * clamp(1.5rem, 4vw, 2.5rem) - 6px);
+  top: 0.3em;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--mint);
+  border: 2px solid var(--navy);
+}
+.timeline__date {
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--navy);
+}
+.timeline__desc {
+  color: var(--navy-soft);
+  max-width: 56ch;
+}
+
+/* ==========================================================================
+   Work / project cards
+   ========================================================================== */
+.work__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(1.75rem, 3vw, 2.25rem);
+}
+.project-card {
+  background: var(--panel);
+  border: var(--border);
+  box-shadow: var(--shadow);
+  padding: clamp(1.25rem, 3vw, 1.75rem);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.project-card__media {
+  aspect-ratio: 16 / 10;
+  background: var(--cream);
+  border: 1.5px dashed var(--navy-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--navy-soft);
+  font-size: 0.8rem;
+}
+.project-card__title { font-size: 1.05rem; }
+.project-card__desc { color: var(--navy-soft); margin: 0; font-size: 0.95rem; }
+.project-card__tags {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+.project-card__tags li {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--navy);
+  background: var(--mint);
+  border: 1.5px solid var(--navy);
+  padding: 0.2em 0.6em;
+}
+
+@media (max-width: 640px) {
+  .work__grid { grid-template-columns: 1fr; }
+}
+
+/* ==========================================================================
+   Contact
+   ========================================================================== */
+.contact__text { color: var(--navy-soft); }
+.contact__email {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.35rem, 3.5vw, 2rem);
+  text-decoration: none;
+  background: var(--panel);
+  border: var(--border);
+  box-shadow: var(--shadow);
+  padding: 0.6em 1em;
+  margin: 0.5rem 0 2rem;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.contact__email:hover {
+  transform: translate(3px, 3px);
+  box-shadow: 2px 2px 0 var(--navy);
+}
+.contact__social {
+  display: flex;
+  gap: 1.5rem;
+}
+.contact__social a {
+  text-decoration: none;
+  color: var(--navy-soft);
+  font-size: 0.9rem;
+  font-weight: 700;
+  transition: color 0.15s ease;
+}
+.contact__social a:hover,
+.contact__social a:focus-visible { color: var(--navy); text-decoration: underline wavy var(--mint); }
+
+/* ==========================================================================
+   Footer — the "back cover", matches the hero
+   ========================================================================== */
+.site-footer {
+  background: var(--navy);
+  border-top: var(--border);
+  padding: 2rem var(--gutter);
+  text-align: center;
+  color: var(--cream-soft);
+  font-size: 0.8rem;
+}
