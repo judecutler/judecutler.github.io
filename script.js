@@ -51,14 +51,6 @@ if (yearEl) {
 }
 
 // ==========================================================================
-// Conway's Game of Life hero background — coming later.
-// The <canvas id="life-canvas"> in the hero is already in the DOM and sized
-// via CSS. When we build this out, it'll live in its own file
-// (e.g. js/game-of-life.js) and get initialized from here, something like:
-//
-//   const canvas = document.getElementById('life-canvas');
-//   initGameOfLife(canvas);
-//
-// Left as a stub on purpose so the rest of the site stays fully functional
-// without it.
+// The Conway's Game of Life hero background lives in its own file,
+// game-of-life.js, loaded right after this one.
 // ==========================================================================
