@@ -1,83 +1,90 @@
-# Your portfolio site
+# Your personal site
 
-A from-scratch HTML/CSS/JS site: hero (with an interactive Conway's Game of
-Life background), about, timeline, work, and contact sections. No build
-tools, no frameworks — just open `index.html` in a browser and it works.
+Hand-built HTML, CSS and JavaScript. No frameworks, no build step. Hosted free
+on GitHub Pages.
 
-## File structure
+## Files (all flat in the repo root, no folders)
 
 ```
-index.html          page structure and placeholder content
-style.css            all styling (colors, type, and layout live here)
-script.js            mobile nav, active-link highlighting, footer year
-spaceship.js          the flyable-ship hero background animation
+index.html    page structure + one-off text (hero, about, contact)
+content.js    the list content: projects, distinctions, story, bucket list
+style.css     colors, type, layout
+script.js     builds the lists from content.js; menu, scroll bar, etc.
+space.js      the starfield + the ship (desktop game / phone orbit)
+README.md
+LICENSE
 ```
 
-All files live flat at the repo root — no subfolders — to match how
-GitHub's web upload tool handles files (it flattens folder structure
-unless you drag whole folders in).
+**If you're updating an existing repo:** upload the five files above that
+changed (`index.html`, `content.js`, `style.css`, `script.js`, `space.js`),
+and **delete `spaceship.js` and `game-of-life.js`** from the repo if they're
+still there. Nothing uses them anymore.
 
-## What to customize first
+## Adding things (the part you'll do most)
 
-Open `index.html` and look for the `<!-- EDIT: ... -->` comments — they
-mark every spot with placeholder content:
+Open **`content.js`**. Each list is a set of blocks. To add a project:
 
-- Hero headline and tagline
-- About photo + bio paragraphs
-- Timeline milestones (add or remove `<li class="timeline__entry">` blocks)
-- Project cards (add or remove `<article class="project-card">` blocks,
-  swap in real photos, rewrite descriptions and tags)
-- Email address and social links in Contact
-- The page `<title>` and `<meta name="description">` at the top of the file
+1. Copy one whole block, from `{` to `},`
+2. Paste it right below
+3. Change the text between the quotes
 
-To use a real photo instead of a placeholder box, replace a placeholder
-`<div>` with an `<img>` tag, e.g.:
+Same for `distinctions` (awards), `timeline` (your story) and `challenges`
+(bucket list). Flip a challenge to `done: true` and the checkmark and the
+progress bar update on their own.
 
-```html
-<img src="portrait.jpg" alt="A photo of you">
-```
+Things that keep it from breaking: keep the `{ ... },` shape, keep text in
+straight quotes, and write `\"` if your text contains a double quote. If a
+section ever looks empty, press F12 in your browser and look at the Console.
+It names the problem.
 
-(Upload your image files to the repo root, or a subfolder if you're
-comfortable managing GitHub's folder uploads.)
+Project cards can also take an optional `image: "photo.jpg"` (upload the photo
+to the repo root).
 
-## The spaceship hero background
+One-off text (hero headline, bio, contact email, social links) is edited in
+`index.html`; look for the `<!-- EDIT -->` comments.
 
-`spaceship.js` draws a parallax starfield and a small Asteroids-style ship
-behind the hero text. A few things worth knowing:
+## The space backdrop
 
-- **Controls**: arrow keys or WASD — up/W to thrust, left/right or A/D to
-  rotate. The ship wraps around the edges of the hero, like classic
-  Asteroids. There's no shooting or obstacles; it's flight only.
-- **Scoped on purpose**: arrow keys only steer the ship while the hero is
-  in view. Scroll past it and the rest of the site works exactly as
-  normal — nothing about reading the page is affected.
-- **Touch devices**: there are no arrow keys on a phone, so the ship
-  gently autopilots in a slow drifting circle instead of requiring input.
-- **Respects "reduce motion"**: if a visitor's system asks for less
-  animation, it draws one static frame and never starts moving.
-- **Performance**: everything drawn is a couple hundred dots, two soft
-  gradients, and one small shape — cheap even on old hardware. It's
-  capped at 1.5x pixel density, and it fully pauses when the hero scrolls
-  out of view or the tab isn't active.
-- To tweak it: `STAR_LAYERS` controls star count/size/speed per depth
-  layer, and `SHIP_COLOR`/`FLAME_COLOR`/`NEBULA_A`/`NEBULA_B` control the
-  color scheme — all defined near the top of `spaceship.js`.
+One fixed starfield sits behind the whole page, in three depth layers.
 
-## Previewing locally
+- **Scrolling** moves the layers at different speeds. Scroll fast (or click a
+  nav link) and the stars streak, like a warp jump.
+- **Desktop hero:** an Asteroids-style game.
+  Arrow keys or WASD to turn and thrust, **space** to fire. Asteroids split
+  when hit. If one hits you, you respawn after a moment; there is no game over.
+- **Phones and tablets:** the ship orbits the hero. Tilt the phone and the
+  orbit and the stars lean with it. Tap the hero and the ship blasts away,
+  then slowly glides back. (iPhones ask permission for motion access the first
+  time you tap; other phones just work. Tilt works in portrait.)
 
-Just double-click `index.html`, or in VS Code use the "Live Server"
-extension for auto-reload while you edit.
+### It never gets in the way of navigating
 
-## Deploying for free (GitHub Pages)
+- **Down arrow, Page Down, and the mouse wheel are never captured.**
+- Game keys only work while the page is scrolled to the very top. Scroll even
+  a little and every key behaves normally again.
+- Keys are ignored while a link or button is focused, and when Ctrl, Cmd or
+  Alt is held, so browser shortcuts still work.
+- With "reduce motion" turned on in a visitor's system, there is no animation
+  at all: one still frame, and no keys are captured.
 
-1. Create a free GitHub account and a new repository named
-   `yourusername.github.io`.
-2. Push these files to it (via the GitHub website's "Add file → Upload
-   files" button, or `git` from the command line).
-3. In the repo, go to **Settings → Pages**, and confirm the source is set
-   to your main branch.
-4. Your site goes live in a few minutes at
-   `https://yourusername.github.io`.
+### Performance
 
-When you make edits locally, re-upload the changed file(s) the same way —
-GitHub will prompt you to confirm the overwrite.
+- Each frame draws a few hundred small rectangles and a handful of outlines.
+  That's light work, but I haven't benchmarked it on a real phone, so if it
+  ever feels heavy on an older device, lower the star counts at the top of
+  `space.js`.
+- Fewer stars on phones; pixel density capped at 1.5x.
+- Frames only run while needed (hero visible, or you're scrolling). Idle page
+  means nothing is running. Paused when the tab is hidden.
+
+Tweak knobs live at the top of `space.js` (ship speed, bullet speed, star
+counts and sizes, orbit speed). Colors live at the top of `style.css`.
+
+## Deploying (GitHub Pages)
+
+1. In your repo choose **Add file → Upload files** and drop the files in.
+   GitHub asks to confirm overwriting; say yes.
+2. Settings → Pages: confirm the source is your main branch.
+3. Live in a minute or two at `https://yourusername.github.io`.
+4. If it doesn't look updated, hard-refresh (Ctrl+Shift+R / Cmd+Shift+R) or try
+   a private window. Browsers cache CSS and JS aggressively.
