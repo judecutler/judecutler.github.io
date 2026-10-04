@@ -12,6 +12,11 @@
   --cream-soft: rgba(255, 249, 235, 0.72); /* muted cream text on navy */
   --line: rgba(0, 29, 68, 0.18); /* hairline on cream */
 
+  /* Deep-space palette, used for the hero's flight scene */
+  --space-void: #05070F;    /* hero background, beneath the canvas */
+  --ship-accent: #80FFAB;   /* ship hull — matches the site's mint accent */
+  --ship-flame: #FFB347;    /* thrust flame */
+
   /* Type */
   --font-display: "Space Grotesk", ui-sans-serif, sans-serif;
   --font-mono: "Space Mono", ui-monospace, Menlo, Consolas, monospace;
@@ -169,17 +174,15 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
   display: flex;
   align-items: center;
   overflow: hidden;
-  background:
-    radial-gradient(var(--mint-line) 1.5px, transparent 1.5px) 0 0 / 16px 16px,
-    var(--navy);
+  background: var(--space-void);
 }
 .hero__canvas {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  /* Reserved for the Conway's Game of Life background — inert until
-     js/game-of-life.js (added later) draws to it. */
+  /* Draws the parallax starfield, nebula wash, and the flyable ship —
+     see spaceship.js. */
 }
 .hero__content {
   position: relative;
@@ -199,6 +202,16 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
   color: var(--cream-soft);
   font-size: clamp(1rem, 2vw, 1.15rem);
   max-width: 42ch;
+}
+.hero__hint {
+  margin-top: 1.75rem;
+  color: var(--ship-accent);
+  font-size: 0.8rem;
+  letter-spacing: 0.02em;
+}
+@media (pointer: coarse) {
+  /* No arrow keys on touch devices, so the hint doesn't apply there. */
+  .hero__hint { display: none; }
 }
 .hero__scroll-cue {
   position: absolute;
