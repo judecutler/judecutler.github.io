@@ -53,9 +53,9 @@ window.SITE_CONTENT = {
   challenges: [
     { text: "Make a music video", done: true },
     { text: "Compete in a Pentathlon", done: false },
-    { text: "Get accepted to a Berkeley Club", done: true },
+    { text: "Climb Mt. Fuji", done: true },
     { text: "Build something that other people use every day", done: false },
-    { text: "Learn Chinese", done: false },
+    { text: "Speak to an Elder in Chinese", done: false },
     { text: "Start a YouTube Channel", done: false },
     { text: "Compete in a Pentathlon", done: false },
     { text: "Tame a crow", done: false },
