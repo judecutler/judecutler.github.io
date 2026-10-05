@@ -30,25 +30,66 @@ window.SITE_CONTENT = {
   // ------------------------------------------------------------------------
   projects: [
     {
-      title: "Project name",
-      description: "One or two sentences on what it is, who it's for, and what you did.",
-      link: "https://example.com",
+      title: "Sasebo Smile",
+      description: "Intercultural nonprofit orchestrating bilingual education & experiences in southern Japan.",
+      link: "https://sasebo-merch.square.site/",
       linkLabel: "View project",
-      tags: ["Tag", "Tag"],
+      tags: ["Service"],
     },
     {
-      title: "Another project",
-      description: "Keep it short. Links turn the whole card into a button.",
-      link: "https://example.com",
-      linkLabel: "Read the write-up",
-      tags: ["Tag"],
-    },
-    {
-      title: "A project without a link",
-      description: "Leave out link and the card simply isn't clickable.",
-      tags: ["Tag", "Tag", "Tag"],
+      title: "More Coming...",
+      description: "Expect something here very shortly",
+      tags: ["Unfinished"],
     },
   ],
+
+  // ------------------------------------------------------------------------
+  // CHALLENGES (bucket list)
+  //   text   the challenge
+  //   done   true when finished, false when still to do
+  //   note   (optional) a date or a detail, e.g. "Summer 2025"
+  // The progress bar counts the "done: true" items for you.
+  // ------------------------------------------------------------------------
+  challenges: [
+    { text: "Make a music video", done: true },
+    { text: "Compete in a Pentathlon", done: false },
+    { text: "Get accepted to a Berkeley Club", done: true },
+    { text: "Build something that other people use every day", done: false },
+    { text: "Learn Chinese", done: false },
+    { text: "Start a YouTube Channel", done: false },
+    { text: "Compete in a Pentathlon", done: false },
+    { text: "Tame a crow", done: false },
+  ],
+
+  // ------------------------------------------------------------------------
+  // TIMELINE (your story) — oldest first.
+  //   date   a year, a season, or "Now"
+  //   title  (optional) a short headline
+  //   text   a sentence or two
+  // ------------------------------------------------------------------------
+  timeline: [
+    {
+      date: "2009",
+      title: "Born in San Diego",
+      text: "As the first of two kids to a small working class family.",
+    },
+    {
+      date: "2022",
+      title: "Moved to Sasebo, Japan",
+      text: "Took the DSD I; First time living abroad",
+    },
+    {
+      date: "2025",
+      title: "First Real Win",
+      text: "Got Best Delegate in YMUNS, made me believe I could do more",
+    },
+    {
+      date: "Present",
+      title: "Enrolled at UC Berkeley",
+      text: "Using every opportunity I have; making memories",
+    },
+  ],
+
 
   // ------------------------------------------------------------------------
   // DISTINCTIONS — awards, honors, recognition.
@@ -61,69 +102,22 @@ window.SITE_CONTENT = {
   // ------------------------------------------------------------------------
   distinctions: [
     {
-      year: "2025",
-      title: "Award or honor name",
-      org: "Awarding organization",
-      description: "Optional one-line context for why it mattered.",
-      link: "",
+      year: "2026",
+      title: "Coke Scholar",
+      org: "First DoDEA selectee in ~12 years",
+      description: "Selected from over 100,000 applicants for leadership, academic excellence, and service.",
+      link: "https://www.coca-colascholarsfoundation.org/about/2026-scholar-bios/",
     },
     {
-      year: "2024",
-      title: "Another distinction",
-      org: "Awarding organization",
+      year: "2026",
+      title: "Military Youth of the Year Asia",
+      org: "Boys and Girls Clubs of America",
     },
     {
-      year: "2023",
-      title: "A third one",
-      org: "Awarding organization",
+      year: "2026",
+      title: "U.S. Presidential Scholar ",
+      org: "Semifinalist (Ongoing)",
+      link: "https://www.ed.gov/media/document/2026-presidential-scholars-program-semifinalists-may-22-2026-114041.pdf",
     },
   ],
-
-  // ------------------------------------------------------------------------
-  // TIMELINE (your story) — oldest first.
-  //   date   a year, a season, or "Now"
-  //   title  (optional) a short headline
-  //   text   a sentence or two
-  // ------------------------------------------------------------------------
-  timeline: [
-    {
-      date: "2015",
-      title: "Replace with a milestone",
-      text: "For example, wrote your first line of code, or moved somewhere new.",
-    },
-    {
-      date: "2019",
-      title: "Another milestone",
-      text: "What happened, and why it changed things.",
-    },
-    {
-      date: "2023",
-      title: "Another milestone",
-      text: "Keep entries short. The story is in the sequence.",
-    },
-    {
-      date: "Now",
-      title: "What you're doing today",
-      text: "Where this chapter is headed.",
-    },
-  ],
-
-  // ------------------------------------------------------------------------
-  // CHALLENGES (bucket list)
-  //   text   the challenge
-  //   done   true when finished, false when still to do
-  //   note   (optional) a date or a detail, e.g. "Summer 2025"
-  // The progress bar counts the "done: true" items for you.
-  // ------------------------------------------------------------------------
-  challenges: [
-    { text: "Replace these with your own challenges", done: true, note: "Example of a finished one" },
-    { text: "Run a half marathon", done: false },
-    { text: "Cook five dishes from memory", done: true, note: "Spring 2025" },
-    { text: "Build something that other people use every day", done: false },
-    { text: "Learn to sail", done: false },
-    { text: "Read 25 books in a year", done: false },
-    { text: "Visit a country where I don't speak the language", done: true },
-    { text: "Give a talk to a room of strangers", done: false },
-  ],
-
 };
