@@ -1,16 +1,11 @@
-// ==========================================================================
-// script.js — builds the list sections from content.js and handles the
-// small UI behaviors (mobile menu, active link, scroll progress, year).
-// The space backdrop and the ship live in space.js.
-// ==========================================================================
+// Edit here for any of the listed thingie majingies
 (function () {
   'use strict';
 
   const SITE = window.SITE_CONTENT || {};
 
-  // --- tiny helpers -------------------------------------------------------
-  // Everything is inserted with textContent, so apostrophes, ampersands, and
-  // quotes in your text can never break the page.
+  
+  // Everything's in textContent
   function el(tag, className, text) {
     const node = document.createElement(tag);
     if (className) node.className = className;
@@ -45,7 +40,7 @@
     }
   }
 
-  // --- Projects -----------------------------------------------------------
+  // --- PPROJECTS -----------------------------------------------------------
   safely('projects', function () {
     const root = document.getElementById('projects-list');
     if (!root) return;
@@ -81,7 +76,7 @@
     });
   });
 
-  // --- Distinctions -------------------------------------------------------
+  // --- DISTINCTIONS -------------------------------------------------------
   safely('distinctions', function () {
     const root = document.getElementById('distinctions-list');
     if (!root) return;
@@ -108,7 +103,7 @@
     });
   });
 
-  // --- Story / timeline ---------------------------------------------------
+  // --- LIFE TIMELINE ---------------------------------------------------
   safely('timeline', function () {
     const root = document.getElementById('timeline-list');
     if (!root) return;
@@ -121,7 +116,7 @@
     });
   });
 
-  // --- Bucket list --------------------------------------------------------
+  // --- BUCKET LIST --------------------------------------------------------
   safely('challenges', function () {
     const root = document.getElementById('challenges-list');
     if (!root) return;
@@ -156,7 +151,7 @@
     }
   });
 
-  // --- Mobile nav ---------------------------------------------------------
+  // --- MOBILE ---------------------------------------------------------
   const navToggle = document.getElementById('navToggle');
   const navMenu = document.getElementById('navMenu');
 
