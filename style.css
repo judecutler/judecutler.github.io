@@ -1,6 +1,4 @@
-/* ==========================================================================
-   Design tokens — deep-space palette
-   ========================================================================== */
+/*Design tokens*/
 :root {
   /* Space */
   --space-top: #001D44;     /* deep blue, top of the page */
@@ -33,9 +31,7 @@
   --shadow: 5px 5px 0 var(--edge);
 }
 
-/* ==========================================================================
-   Reset + base
-   ========================================================================== */
+/* Reset + base*/
 *, *::before, *::after { box-sizing: border-box; }
 
 html {
@@ -84,9 +80,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
   }
 }
 
-/* ==========================================================================
-   Space backdrop (fixed, behind everything)
-   ========================================================================== */
+/*Space backdrop */
 .nebula {
   position: fixed; inset: 0; z-index: 0; pointer-events: none;
   background:
@@ -100,9 +94,9 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 }
 main, .site-footer { position: relative; z-index: 1; }
 
-/* ==========================================================================
+/*
    Header / nav
-   ========================================================================== */
+ */
 .site-header {
   position: fixed; top: 0; left: 0; right: 0; z-index: 50;
   background: rgba(0, 20, 52, 0.9);
@@ -154,9 +148,9 @@ main, .site-footer { position: relative; z-index: 1; }
   .nav__menu a { font-size: 1.1rem; padding: 0.7rem 0; width: 100%; }
 }
 
-/* ==========================================================================
+/* 
    Hero
-   ========================================================================== */
+*/
 .hero {
   position: relative; display: flex; align-items: center; overflow: hidden;
   min-height: 100vh; min-height: 100svh;
@@ -219,15 +213,15 @@ kbd {
   100% { transform: translateY(50px); }
 }
 
-/* ==========================================================================
+/* 
    Sections
-   ========================================================================== */
+*/
 .section { position: relative; }
 .section[id] { scroll-margin-top: 56px; }
 .section-inner {
   max-width: var(--content-width); margin: 0 auto;
   padding: clamp(3.5rem, 9vw, 6rem) var(--gutter);
-  border-top: 1px dashed var(--line);
+  border-top: 0px dashed var(--line);
 }
 .section-title { font-size: clamp(1.9rem, 4.6vw, 2.75rem); line-height: 1.1; }
 .section-lede {
