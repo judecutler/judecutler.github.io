@@ -52,13 +52,13 @@ window.SITE_CONTENT = {
   // ------------------------------------------------------------------------
   challenges: [
     { text: "Make a music video", done: true },
-    { text: "Compete in a Pentathlon", done: false },
-    { text: "Climb Mt. Fuji", done: true },
-    { text: "Build something that other people use every day", done: false },
+    { text: "Tame a crow", done: false },
+    { text: "Reach B1+ in 5 Languages", done: true },
+    { text: "Build something other people use every day", done: false },
     { text: "Speak to an Elder in Chinese", done: false },
     { text: "Start a YouTube Channel", done: false },
     { text: "Compete in a Pentathlon", done: false },
-    { text: "Tame a crow", done: false },
+    { text: "Learn to Sing", done: false },
   ],
 
   // ------------------------------------------------------------------------
