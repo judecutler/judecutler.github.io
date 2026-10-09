@@ -61,11 +61,24 @@ window.SITE_CONTENT = {
     { text: "Learn to Sing", done: false },
   ],
 
+  
   // ------------------------------------------------------------------------
-  // TIMELINE (your story) — oldest first.
-  //   date   a year, a season, or "Now"
-  //   title  (optional) a short headline
-  //   text   a sentence or two
+  // ACHIEVEMENTS 
+  //   text   
+  //   note   
+  // The bar starts at the first item, so newest-first reads well.
+  // ------------------------------------------------------------------------
+  achievements: [
+    { text: "Reached 1000 Elo on Chess.com", note: "Oct 2026" },
+    { text: "Learned a 5-way polyrhythm" },
+    { text: "Replace these with your own", note: "Example" },
+  ],
+  
+  // ------------------------------------------------------------------------
+  // TIMELINE 
+  //   date   
+  //   title  
+  //   text   
   // ------------------------------------------------------------------------
   timeline: [
     {
