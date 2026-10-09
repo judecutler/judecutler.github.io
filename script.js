@@ -203,6 +203,87 @@
     update();
   }
 
+  // --- Achievements bar ---------------------------------------------------
+  (function () {
+    const track = document.getElementById('ticker-track');
+    const bar = track && track.closest('.ticker');
+    if (!track || !bar) return;
+    const items = (window.SITE_CONTENT && window.SITE_CONTENT.achievements) || [];
+    if (!items.length) { bar.style.display = 'none'; return; }
+
+    const still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const viewport = track.parentElement;
+    const SPEED = 55; // pixels per second; lower = slower
+
+    // One run of the achievements. Repeats and the second copy are hidden from
+    // screen readers so each achievement is only read out once.
+    function makeGroup(repeat, hidden) {
+      const ul = document.createElement('ul');
+      ul.className = 'ticker__group';
+      if (hidden) ul.setAttribute('aria-hidden', 'true');
+      for (let r = 0; r < repeat; r++) {
+        items.forEach(function (a) {
+          const li = document.createElement('li');
+          li.className = 'ticker__item';
+          if (r > 0) li.setAttribute('aria-hidden', 'true');
+          const text = document.createElement('span');
+          text.textContent = a.text || '';
+          li.appendChild(text);
+          if (a.note) {
+            const note = document.createElement('span');
+            note.className = 'ticker__note';
+            note.textContent = a.note;
+            li.appendChild(note);
+          }
+          ul.appendChild(li);
+        });
+      }
+      return ul;
+    }
+
+    function build() {
+      track.textContent = '';
+      track.appendChild(makeGroup(1, false));
+      if (still) return;                       // reduced motion: one still list
+
+      // Repeat the items until one run is at least as wide as the screen,
+      // so a short list never leaves a gap in the loop.
+      const oneRun = track.firstChild.getBoundingClientRect().width;
+      const repeat = oneRun > 0 ? Math.max(1, Math.ceil(viewport.clientWidth / oneRun)) : 1;
+      if (repeat > 1) { track.textContent = ''; track.appendChild(makeGroup(repeat, false)); }
+      track.appendChild(makeGroup(repeat, true));
+
+      const width = track.firstChild.getBoundingClientRect().width;
+      track.style.setProperty('--ticker-duration', Math.max(15, width / SPEED) + 's');
+    }
+
+    build();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(build);
+
+    let lastWidth = window.innerWidth, timer;
+    window.addEventListener('resize', function () {
+      clearTimeout(timer);
+      timer = setTimeout(function () {
+        if (window.innerWidth !== lastWidth) { lastWidth = window.innerWidth; build(); }
+      }, 200);
+    });
+
+    if (still) return;
+
+    const toggle = document.getElementById('ticker-toggle');
+    if (toggle) toggle.addEventListener('click', function () {
+      const paused = bar.classList.toggle('is-paused');
+      toggle.textContent = paused ? 'Play' : 'Pause';
+      toggle.setAttribute('aria-label', paused ? 'Resume achievements scroll' : 'Pause achievements scroll');
+    });
+
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (entries) {
+        bar.classList.toggle('is-offscreen', !entries[0].isIntersecting);
+      }).observe(bar);
+    }
+  })();
+  
   // --- Footer year --------------------------------------------------------
   const year = document.getElementById('year');
   if (year) year.textContent = new Date().getFullYear();
