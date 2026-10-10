@@ -203,7 +203,7 @@
     update();
   }
 
-  // --- Achievements bar ---------------------------------------------------
+    // --- Achievements bar ---------------------------------------------------
   (function () {
     const track = document.getElementById('ticker-track');
     const bar = track && track.closest('.ticker');
@@ -211,30 +211,56 @@
     const items = (window.SITE_CONTENT && window.SITE_CONTENT.achievements) || [];
     if (!items.length) { bar.style.display = 'none'; return; }
 
+    const count = document.getElementById('ticker-count');
+    if (count) count.textContent = items.length;
+
     const still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const viewport = track.parentElement;
-    const SPEED = 55; // pixels per second; lower = slower
+    const SPEED = 45; // pixels per second; lower = slower
+
+    function pct(n) {
+      if (n < 0.1) return '<0.1%';
+      return (n >= 10 ? Math.round(n) : Math.round(n * 10) / 10) + '%';
+    }
+    function el(tag, cls, text) {
+      const e = document.createElement(tag);
+      if (cls) e.className = cls;
+      if (text) e.textContent = text;
+      return e;
+    }
+
+    function makeCard(a) {
+      const li = el('li', 'ticker__item');
+      const rarity = parseFloat(a.rarity);
+      if (!isNaN(rarity)) li.dataset.tier = rarity < 5 ? 'ultra' : rarity < 20 ? 'rare' : 'common';
+
+      li.appendChild(el('span', 'ticker__badge'));
+      const body = el('span', 'ticker__body');
+      const kicker = el('span', 'ticker__kicker', 'Achievement unlocked');
+      kicker.setAttribute('aria-hidden', 'true');
+      body.appendChild(kicker);
+      body.appendChild(el('span', 'ticker__name', a.name || a.text || ''));
+      if (a.name && a.text) body.appendChild(el('span', 'ticker__desc', a.text));
+      li.appendChild(body);
+
+      if (!isNaN(rarity)) {
+        const r = el('span', 'ticker__rarity');
+        r.appendChild(el('span', 'ticker__pct', pct(rarity)));
+        r.appendChild(el('span', 'ticker__pct-label', 'of people'));
+        li.appendChild(r);
+      }
+      return li;
+    }
 
     // One run of the achievements. Repeats and the second copy are hidden from
     // screen readers so each achievement is only read out once.
     function makeGroup(repeat, hidden) {
-      const ul = document.createElement('ul');
-      ul.className = 'ticker__group';
+      const ul = el('ul', 'ticker__group');
       if (hidden) ul.setAttribute('aria-hidden', 'true');
       for (let r = 0; r < repeat; r++) {
         items.forEach(function (a) {
-          const li = document.createElement('li');
-          li.className = 'ticker__item';
+          const li = makeCard(a);
           if (r > 0) li.setAttribute('aria-hidden', 'true');
-          const text = document.createElement('span');
-          text.textContent = a.text || '';
-          li.appendChild(text);
-          if (a.note) {
-            const note = document.createElement('span');
-            note.className = 'ticker__note';
-            note.textContent = a.note;
-            li.appendChild(note);
-          }
           ul.appendChild(li);
         });
       }
@@ -254,7 +280,7 @@
       track.appendChild(makeGroup(repeat, true));
 
       const width = track.firstChild.getBoundingClientRect().width;
-      track.style.setProperty('--ticker-duration', Math.max(15, width / SPEED) + 's');
+      track.style.setProperty('--ticker-duration', Math.max(20, width / SPEED) + 's');
     }
 
     build();
@@ -267,21 +293,6 @@
         if (window.innerWidth !== lastWidth) { lastWidth = window.innerWidth; build(); }
       }, 200);
     });
-
-    if (still) return;
-
-    const toggle = document.getElementById('ticker-toggle');
-    if (toggle) toggle.addEventListener('click', function () {
-      const paused = bar.classList.toggle('is-paused');
-      toggle.textContent = paused ? 'Play' : 'Pause';
-      toggle.setAttribute('aria-label', paused ? 'Resume achievements scroll' : 'Pause achievements scroll');
-    });
-
-    if ('IntersectionObserver' in window) {
-      new IntersectionObserver(function (entries) {
-        bar.classList.toggle('is-offscreen', !entries[0].isIntersecting);
-      }).observe(bar);
-    }
   })();
   
   // --- Footer year --------------------------------------------------------
