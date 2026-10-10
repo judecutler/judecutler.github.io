@@ -72,10 +72,10 @@ window.SITE_CONTENT = {
   // Rarity colors the card: under 5 is amber, under 20 is mint, else cream.
   // ------------------------------------------------------------------------
   achievements: [
-    { name: "Sticky Fingers", text: "Hit 200+ WPM on MonkeyType", rarity: 0.4 },
+    { name: "Cubed", text: "Solve Rubik's Cube in under 30s", rarity: 10 },
     { name: "Rated Player", text: "Reached 1000 Elo on Chess.com", rarity: 30 },
-    { name: "Off the Beat", text: "Learned a 5-way polyrhythm", rarity: 2 },
-    { name: "Replace Me", text: "Swap these for your own", rarity: 12 },
+    { name: "Bongga Ka Day", text: "Learn Tagalog", rarity: 1 },
+    { name: "Krankenwagen", text: "Learn German", rarity: 2 },
   ],
 
   
