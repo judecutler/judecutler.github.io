@@ -62,17 +62,22 @@ window.SITE_CONTENT = {
   ],
 
   
-  // ------------------------------------------------------------------------
-  // ACHIEVEMENTS 
-  //   text   
-  //   note   
+    // ------------------------------------------------------------------------
+  // ACHIEVEMENTS (the scrolling "unlocked" bar under the hero)
+  //   name     the achievement's title, like a game would name it
+  //   text     what you actually did
+  //   rarity   (optional) your best guess at the % of people who've done it,
+  //            as a plain number: 0.4 means "0.4% of people"
   // The bar starts at the first item, so newest-first reads well.
+  // Rarity colors the card: under 5 is amber, under 20 is mint, else cream.
   // ------------------------------------------------------------------------
   achievements: [
-    { text: "Reached 1000 Elo on Chess.com", note: "Oct 2026" },
-    { text: "Learned a 5-way polyrhythm" },
-    { text: "Replace these with your own", note: "Example" },
+    { name: "Sticky Fingers", text: "Hit 200+ WPM on MonkeyType", rarity: 0.4 },
+    { name: "Rated Player", text: "Reached 1000 Elo on Chess.com", rarity: 30 },
+    { name: "Off the Beat", text: "Learned a 5-way polyrhythm", rarity: 2 },
+    { name: "Replace Me", text: "Swap these for your own", rarity: 12 },
   ],
+
   
   // ------------------------------------------------------------------------
   // TIMELINE 
