@@ -76,6 +76,7 @@ window.SITE_CONTENT = {
     { name: "Rated Player", text: "Reached 1000 Elo on Chess.com", rarity: 30 },
     { name: "Bongga Ka Day", text: "Learn Tagalog", rarity: 1 },
     { name: "Krankenwagen", text: "Learn German", rarity: 2 },
+    { name: "Collier Cadence", text: "Learn 5 way polyrithm on one hand", rartiy: 2}
   ],
 
   
