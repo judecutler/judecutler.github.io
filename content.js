@@ -88,7 +88,7 @@ window.SITE_CONTENT = {
   // ------------------------------------------------------------------------
   timeline: [
     {
-      date: "2009",
+      date: "####",
       title: "Born in San Diego",
       text: "As the first of two kids to a small working class family.",
     },
