@@ -29,6 +29,13 @@ window.SITE_CONTENT = {
   //   imageAlt     (optional) describe the picture for screen readers
   // ------------------------------------------------------------------------
   projects: [
+     {
+      title: "PaperEase",
+      description: "Automatic Regulatory Compliance Web App for Elder care facilities.",
+      link: "https://github.com/judecutler/paperease",
+      linkLabel: "View project",
+      tags: ["Hackathon"],
+    },
     {
       title: "Sasebo Smile",
       description: "Intercultural nonprofit orchestrating bilingual education & experiences in southern Japan.",
